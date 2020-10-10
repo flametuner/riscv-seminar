@@ -72,12 +72,6 @@ $(foreach c,$(configs),$(eval $(call pattern,AS,$(c),s)))
 # Build system functions to generate library rules for all configs
 #
 
-define archive =
-build/lib/$(2)/$(3).a: $(addprefix build/obj/$(2)/,$($(3)_objs))
-	$(call cmd,$(1).$(2) $$@,$$(@D),$(AR) cr $$@ $$^)
-LIBS_$(2) += build/lib/$(2)/$(3).a
-endef
-
 define lib =
 $(foreach c,$(configs),$(eval $(call archive,AR,$(c),$(1))))
 INCLUDES += -I$(1)/include

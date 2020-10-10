@@ -7,7 +7,7 @@ int init()
 
 static int putchar(int ch)
 {
-    while ((uart[0x05] & 0x40) == 0);
+    while (uart[0x00] < 0);
     return uart[0x00] = ch & 0xff;
 }
 
