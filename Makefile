@@ -31,17 +31,7 @@ CC_rv64imac        = $(CROSS_COMPILE)gcc
 CFLAGS_rv64imac    = -Os -march=rv64imac -mabi=lp64  -Ienv/common/rv64
 LDFLAGS_rv64imac   =
 
-targets            = rv32imac:default \
-                     rv64imac:default \
-                     rv32imac:spike \
-                     rv64imac:spike \
-                     rv32imac:virt \
-                     rv64imac:virt \
-                     rv32imac:qemu-sifive_e \
-                     rv64imac:qemu-sifive_e \
-                     rv32imac:qemu-sifive_u \
-                     rv64imac:qemu-sifive_u \
-                     rv32imac:coreip-e2-arty
+targets            = rv64imac:virt
 
 #
 # make rules
