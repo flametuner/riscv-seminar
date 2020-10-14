@@ -40,6 +40,6 @@ void poweroff(int status)
 int main()
 {
     init();
-    print("Hello World\n");
+    print("Hello Seminar\n");
     poweroff(0);
 }
