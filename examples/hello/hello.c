@@ -6,7 +6,7 @@ static volatile char *uart;
  */
 int init()
 {
-	uart = (char *)(void *)0x10000000;
+    uart = (char *)(void *)0x10000000;
 }
 
 static int putchar(int ch)
@@ -16,7 +16,6 @@ static int putchar(int ch)
     // Seta o caractere no registrador do uart
     return uart[0x00] = ch & 0xff;
 }
-
 
 /**
  * Loop para todas printar array de caracteres
@@ -31,7 +30,7 @@ int print(const char *s)
  */
 void poweroff(int status)
 {
-	volatile int *test = (int *)(void *) 0x100000;
+    volatile int *test = (int *)(void *) 0x100000;
     *test = 0x5555;
     while (1) {
         asm volatile("");
@@ -40,7 +39,7 @@ void poweroff(int status)
 
 int main()
 {
-	init();
-	print("Hello World\n");
-	poweroff(0);
+    init();
+    print("Hello World\n");
+    poweroff(0);
 }
