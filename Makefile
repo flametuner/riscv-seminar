@@ -19,7 +19,7 @@ libfemto_objs      = $(patsubst %.s,%.o,$(libfemto_asm)) \
 
 subdirs            = examples
 
-libs               = libfemto
+libs               = 
 
 configs            = rv32imac rv64imac
 
@@ -28,7 +28,7 @@ CFLAGS_rv32imac    = -Os -march=rv32imac -mabi=ilp32 -Ienv/common/rv32
 LDFLAGS_rv32imac   =
 
 CC_rv64imac        = $(CROSS_COMPILE)gcc
-CFLAGS_rv64imac    = -Os -march=rv64imac -mabi=lp64  -Ienv/common/rv64
+CFLAGS_rv64imac    = -Os -march=rv64imac -mabi=lp64
 LDFLAGS_rv64imac   =
 
 targets            = rv64imac:virt
@@ -62,7 +62,7 @@ endif
 define pattern =
 build/obj/$(2)/%.o: %.$(3)
 	$(call cmd,$(1).$(2) $$@,$$(@D),$(CC_$(2)) $(CFLAGS_$(2)) $(CFLAGS) \
-	$$(INCLUDES) -c $$^ -o $$@)
+	-c $$^ -o $$@)
 endef
 
 $(foreach c,$(configs),$(eval $(call pattern,CC,$(c),c)))
@@ -95,7 +95,7 @@ define rule =
 build/bin/$(3)/$(4)/$(1): \
 build/obj/$(3)/env/$(4)/crt.o $(2) $$(LIBS_$(3))
 	$$(call cmd,LD.$(3) $$@,$$(@D),$(CC_$(3)) $(CFLAGS_$(3)) $$(CFLAGS) \
-	$$(LDFLAGS_$(3)) $$(LDFLAGS) -T env/$(4)/default.lds $$^ -o $$@)
+	$$(LDFLAGS) -T env/$(4)/default.lds $$^ -o $$@)
 endef
 
 define module =

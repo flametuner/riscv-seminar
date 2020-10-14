@@ -11,10 +11,10 @@ int init()
 
 static int putchar(int ch)
 {
-    // Checkagem para ver se o UART já leu o caractere anterior
-    while (uart[0x00] < 0);
+    // Checkagem para registrador status (0x05) do UART (0x40 mascara para pegar bit certo)
+    while ((uart[0x05]  & 0x40) == 0);
     // Seta o caractere no registrador do uart
-    return uart[0x00] = ch & 0xff;
+    return uart[0x00] = ch & 0xff; //Mask para apenas os ultimos 2 bytes
 }
 
 /**
